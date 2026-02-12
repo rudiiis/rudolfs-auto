@@ -51,27 +51,7 @@ Max cena (€):
 """
 
 def scrape_ss(min_price, max_price, max_pages=3):
-    prices = []
-    headers = {"User-Agent": "Mozilla/5.0"}
-
-    for page in range(1, max_pages + 1):
-        url = BASE_URL if page == 1 else f"{BASE_URL}page{page}.html"
-        response = requests.get(url, headers=headers, timeout=10)
-        soup = BeautifulSoup(response.text, "html.parser")
-
-        rows = soup.find_all("tr", id=lambda x: x and x.startswith("tr_"))
-
-        for row in rows:
-            cols = row.find_all("td")
-            if len(cols) > 5:
-                price_text = cols[-1].text.strip().replace("€", "").replace(" ", "")
-                try:
-                    price = int(price_text)
-                    if min_price <= price <= max_price:
-                        prices.append(price)
-                except:
-                    continue
-
+    # TESTA DATI
     return [2500, 2700, 3100, 3300, 3600]
 
 
